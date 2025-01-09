@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet</title>
+</head>
+<body>
+    <h1>Your Wallet</h1>
+
+    <form method="post">
+        <input type="text" name="wallet_name" placeholder="Wallet Name" required>
+        <button type="submit">Create/Access Wallet</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+
+    {% if wallet_info %}
+        <h2>Wallet Address: {{ wallet_info.address }}</h2>
+        <p>Private Key: {{ wallet_info.private_key }}</p>
+    {% else %}
+        <p>No wallet found in session. Please create a new wallet.</p>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}">Home</a>
+</body>
+</html>

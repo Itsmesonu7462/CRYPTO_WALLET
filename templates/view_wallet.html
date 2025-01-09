@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Wallet</title>
+    <!-- Add Bootstrap for Styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy text: " + err);
+            });
+        }
+
+        // Function to download wallet details as a file
+        function downloadWallet(address, privateKey) {
+            const data = `Wallet Address: ${address}\nPrivate Key: ${privateKey}\n`;
+            const blob = new Blob([data], { type: "text/plain" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "wallet_info.txt";
+            link.click();
+        }
+    </script>
+</head>
+<body class="container mt-4">
+    <header class="mb-4">
+        <h1 class="text-center">Your Wallet</h1>
+    </header>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Wallet Information</h5>
+            <p><strong>Wallet Address:</strong> {{ wallet_info.address }} 
+                <button class="btn btn-sm btn-outline-primary" onclick="copyToClipboard('{{ wallet_info.address }}')">Copy</button>
+            </p>
+            <p><strong>Private Key:</strong> 
+                <span id="private-key">Hidden for security</span>
+                <button class="btn btn-sm btn-outline-warning" onclick="alert('Your private key is sensitive. Please handle it with care!')">Reveal</button>
+                <button class="btn btn-sm btn-outline-success" onclick="downloadWallet('{{ wallet_info.address }}', '{{ wallet_info.private_key }}')">Download</button>
+            </p>
+            <p class="text-danger">⚠️ Keep your private key secure. Do not share it with anyone!</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Transaction History</h5>
+            <ul class="list-group">
+                {% if transactions %}
+                    {% for txn_hash in transactions %}
+                        <li class="list-group-item">
+                            <a href="{{ url_for('transaction_details', txn_hash=txn_hash) }}" target="_blank">
+                                Transaction: {{ txn_hash }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item text-muted">No transactions found.</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <footer class="mt-4">
+        <a href="{{ url_for('create_wallet') }}" class="btn btn-primary">Create Another Wallet</a>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Home</a>
+    </footer>
+</body>
+</html>
