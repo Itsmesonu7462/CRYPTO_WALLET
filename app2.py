@@ -6,13 +6,13 @@ import logging
 
 # Initialize Flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', '6cc5397709d44a69a12bdf6fe9ebbb6f')  # Use environment variable for secret key
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', '6cc5397709d4a12bdf6fe9ebbb6f')  # Use environment variable for secret key
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
 # Connect to Ethereum network (Infura URL)
-infura_url = os.getenv('INFURA_URL', 'https://mainnet.infura.io/v3/6cc5397709d44a69a12bdf6fe9ebbb6f')  # Use environment variable
+infura_url = os.getenv('INFURA_URL', 'https://mainnet.infura.io/v3/6cc5397709d44abdf6fe9ebbb6f')  # Use environment variable
 web3 = Web3(Web3.HTTPProvider(infura_url))
 
 if not web3.is_connected():
