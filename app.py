@@ -3,10 +3,10 @@ from web3 import Web3
 import json
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '6cc5397709d44a69a12bdf6fe9ebbb6f'
+app.config['SECRET_KEY'] = '6cc539744a69a12bdf6fe9ebbb6f'
 
 # Connect to Ethereum network (Infura URL)
-infura_url = 'https://mainnet.infura.io/v3/6cc5397709d44a69a12bdf6fe9ebbb6f'  # Replace with your own Infura Project ID
+infura_url = 'https://mainnet.infura.io/v3/6cc5397709d44a69afe9ebbb6f'  # Replace with your own Infura Project ID
 web3 = Web3(Web3.HTTPProvider(infura_url))
 
 if not web3.is_connected():
