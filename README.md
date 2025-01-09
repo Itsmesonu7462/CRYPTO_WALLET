@@ -175,6 +175,6 @@ This project is licensed under the MIT License.
 
 ## **Contact**
 For any queries or contributions, feel free to reach out:
-- **Email**: your.email@example.com
-- **GitHub**: [your-github-username](https://github.com/your-github-username)
+- **Email**: djsonukumarkushwaha@gmail.com
+- **GitHub**: [itsmesonu7462](https://github.com/itsmesonu7462)
 
